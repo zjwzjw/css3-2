@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style>
+	*{
+		margin: 0;
+		padding: 0;
+	}
+   #container{
+          width: 400px;
+          height: 300px;
+          margin: 100px auto;
+          position: relative;
+
+    }
+   
+	#container img{
+		width: 400px;
+		height:300px;
+		position: absolute;
+		opacity: 0;
+		-webkit-transform-origin:bottom;
+	}
+#prev,#next{
+          width: 50px;
+          height: 50px;
+          -webkit-border-radius:50%;
+          background: #ccc;
+         position: absolute;
+         font-size: 40px;
+         font-style: #fff;
+         color: white;
+         -webkit-text-stroke:1px #000;
+         -webkit-box-shadow:10px 10px 10px #000;
+         text-align: center;
+         line-height: 50px;
+          top: 50%;
+          left: 50%;
+         
+
+
+
+}
+#prev{
+          left: -100px;
+
+}
+#next{
+	    left:420px;
+}
+#container .show{
+	-webkit-animation:show 1s ease-in forwards;
+
+}
+@-webkit-keyframes show{
+	0%{
+		opacity: 0;
+		-webkit-transform:rotateX(180deg);
+	}
+	100%{
+		opacity: 1;
+		-webkit-transform:rotateX(0deg);
+	}
+}
+#container .hide{
+	-webkit-animation:hide 1s ease-in forwards;
+
+}
+@-webkit-keyframes hide{
+	0%{
+				opacity: 1;
+				-webkit-transform: rotateX(0deg);
+			}
+	100%{
+			opacity: 0;
+			-webkit-transform: rotateX(-180deg);
+
+}
+
+
+
+	</style>
+</head>
+<body>
+
+<div id="container">
+	<div id="img">
+		<img src="img/1.jpg" alt="" class="show">
+		<img src="img/2.jpg" alt="">
+		<img src="img/3.jpg" alt="">
+		<img src="img/4.jpg" alt="">
+    </div>
+    <div id="arrows">
+    	<span id="prev">&lt</span>
+		<span id="next">&gt</span>
+
+     </div>
+
+
+
+
+</div>
+	<script>
+	var oPrev = document.getElementById('prev'),
+	    oNext = document.getElementById('next'),
+	    aImg = document.getElementsByTagName('img');
+	    var nowIdx = 0;
+	    oNext.onclick = function(){
+	    	aImg[nowIdx].className = 'hide';
+	    	nowIdx++;
+	    	if (nowIdx == aImg.length){
+	    		nowIdx = 0;
+	    	}
+	    	aImg[nowIdx].className = 'show';
+	    };
+	    oPrev.onclick = function(){
+			aImg[nowIdx].className = 'hide';
+			nowIdx--;
+			if(nowIdx == -1){
+				nowIdx = aImg.length-1;
+			}
+			aImg[nowIdx].className = 'show';
+		};
+		
+	</script>
+</body>
+</html>
